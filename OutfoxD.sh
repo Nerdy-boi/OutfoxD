@@ -44,6 +44,7 @@ OutfoxD_update () {
     echo "copying Updates"
     rsync -rp /media/outfox/STEPMANIA/UPDATE/. /home/outfox/Desktop
     rm -rf /media/outfox/STEPMANIA/UPDATE/
+    reboot
 }
 
 
@@ -57,9 +58,27 @@ if [ -b /dev/sda ]; then {
 fi
 }
 
+echo "*"
+echo "* KONMAI LINUX EMBEDDED IMAGE ver" $(uname -r)
+echo "* WEBUILDDATE 2023/06/26 4:20:69"
+echo "*"
 
-echo "bypass for USB stick mounting"
-sleep 20
+
+echo "Set System Enviroment"
+sleep 10
+echo "OTF-EA-A01 2023-06-26 0"
+echo "Check Safety"
+echo "Change Work Directory..."
+sleep 1
+echo "Set Etc. Enviroment..."
+sleep 5
+echo "Check Work Directory..."
+sleep 1
+echo "Check idrec"
+sleep 3
+echo "0"
+echo "Check Disks..."
+echo " Check D:"
 echo "checking for file existence"
 [ ! -f "/home/outfox/setup.txt" ] && GPU_Setup
 echo "checking for FS Size"
@@ -67,6 +86,9 @@ echo "checking for FS Size"
 echo "checking for Update to OutfoxD"
 [ -d "/media/outfox/STEPMANIA/UPDATE/" ] && OutfoxD_update
 
+#loads the module for piuio
+depmod-a
+modprobe piuio
 xrandr -s 1280x720
 [ -d "/media/outfox/STEPMANIA" ] && Song_import
 /home/outfox/Desktop/OutFox-x86_64.AppImage
