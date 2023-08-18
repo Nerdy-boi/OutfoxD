@@ -4,6 +4,38 @@ Song_import () {
  rsync -rp /media/outfox/STEPMANIA/SONGS/. /home/outfox/.project-outfox/Songs
 }
 
+Res_Setup(){
+
+ echo "Select Graphics Mode"
+
+ PS3='Please enter your choice: '
+ options=("HD 720p" "Sd 480p" "OTHER")
+ select opt in "${options[@]}"
+ do
+    case $opt in
+        "HD 720p")
+            echo "you chose HD MODE"
+            echo "$res = 1280x720" > ~/.env
+            break
+            ;;
+        "Nvidia 525 MODERN GPUS")
+            echo "you chose NVIDIA 525"
+            sudo apt instll nvidia-driver-525
+            touch /home/outfox/setup.txt
+            sudo reboot now
+            break
+            ;;
+        "AMD")
+            touch /home/outfox/setup.txt
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
+}
+
+
 GPU_Setup () {
  echo "Select the GPU Driver required"
 
@@ -35,7 +67,7 @@ GPU_Setup () {
     esac
 done
 
-
+Res_Setup()
 
 }
 
