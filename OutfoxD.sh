@@ -9,7 +9,7 @@ Res_Setup(){
  echo "Select Graphics Mode"
 
  PS3='Please enter your choice: '
- options=("HD 720p" "Sd 480p" "OTHER")
+ options=("HD 720p" "SD 480p" "OTHER")
  select opt in "${options[@]}"
  do
     case $opt in
@@ -65,7 +65,7 @@ GPU_Setup () {
             ;;
         *) echo "invalid option $REPLY";;
     esac
-done
+ done
 
 Res_Setup()
 
